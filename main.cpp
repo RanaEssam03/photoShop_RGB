@@ -114,7 +114,7 @@ void flipImage(char option){
     if (option == 'v'){
         for (int i = 0 ; i < SIZE/2 ; i++){
             for (int j = 0 ; j < SIZE ; j++){
-                for (int k = 0 ; k < RGB ; k++) {
+                for (int k = 0 ; k < 3 ; k++) {
                     int temp = image[i][j] [k];
                     image[i][j][k] = image[SIZE - i - 1][j] [k];
                     image[SIZE - i - 1][j][k] = temp;
@@ -125,7 +125,7 @@ void flipImage(char option){
     else if (option == 'h'){
         for (int i = 0 ; i < SIZE ; i++){
             for (int j = 0 ; j < SIZE/2 ; j++){
-                for (int k = 0 ; k < RGB ; k++){
+                for (int k = 0 ; k < 3 ; k++){
                     int temp = image[i][j][k];
                     image[i][j] [k] = image[i][SIZE-j-1] [k];
                     image[i][SIZE-j-1] [k] = temp;
@@ -159,7 +159,7 @@ void mirrorImage(){
     if (side == 'l'){
         for (int i = 0; i <255; i++){
             for (int j = 127; j < 255 ; j++){
-                for (int k = 0 ; k < RGB ; k++){
+                for (int k = 0 ; k < 3 ; k++){
                     image[i][j][k] = image[i][255-j-1][k];
                 }
 
@@ -169,7 +169,7 @@ void mirrorImage(){
     else if (side == 'r'){
         for (int i = 0; i <255; i++){
             for (int j = 0; j < 127 ; j++){
-                for (int k = 0 ; k < RGB ; k++){
+                for (int k = 0 ; k < 3 ; k++){
                     image[i][j][k] = image[i][255-j-1][k];
                 }
 
@@ -180,7 +180,7 @@ void mirrorImage(){
     if (side == 'u'){
         for (int i = 127; i <255; i++){
             for (int j = 0; j < 255 ; j++){
-                for (int k = 0 ; k < RGB ; k++){
+                for (int k = 0 ; k < 3 ; k++){
                     image[i][j][k] = image[i][255-j-1][k];
                 }
 
@@ -190,7 +190,7 @@ void mirrorImage(){
     if (side == 'd'){
         for (int i = 0; i <127; i++){
             for (int j = 0; j < 255 ; j++){
-                for (int k = 0 ; k < RGB ; k++){
+                for (int k = 0 ; k < 3 ; k++){
                     image[i][j][k] = image[i][255-j-1][k];
                 }
 
@@ -224,9 +224,8 @@ void blur () {
 void invert(){
     for (int i=0; i < 255; i++){
         for (int j = 0 ; j < 255 ; j++){
-            for (int k = 0 ; k < RGB ; k++){
-                int x = image[i][j] [k];
-                image[i][j][k] = abs( RGB - image[i] [j] [k]);
+            for (int k = 0 ; k < 3 ; k++){
+                image[i][j][k] = abs( 255 - image[i] [j] [k]);
             }
 
         }
@@ -245,7 +244,7 @@ void rotateImage() {
     {
         for (int j = i; j < SIZE; j++)
         {
-            for (int k = 0 ; k < RGB; k++)
+            for (int k = 0 ; k < 3; k++)
             {
                 int temp = image[i][j][k];
                 image[i][j][k] = image[j][i][k];

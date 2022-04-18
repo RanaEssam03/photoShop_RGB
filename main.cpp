@@ -12,7 +12,7 @@ void bAndW ();
 void flipImage(char option);
 void detectImageEdges();
 void mirrorImage();
-//void blur();
+void blur();
 void invert();
 void rotateImage();
 
@@ -54,9 +54,9 @@ int main() {
         else if (filter == 'a'){
             mirrorImage();
         }
-//        else if (filter == 'c'){
-//            blur();
-//        }
+        else if (filter == 'c'){
+            blur();
+        }
         else if (filter == 's'){
             saveImage();
             break;
@@ -200,23 +200,26 @@ void mirrorImage(){
 }
 
 ////________________________________________________________________________________
-//void blur () {
-//    int value;
-//    for (int i=0 ; i < SIZE ; i+=2){
-//        for (int j=0 ; j < SIZE ; j+=2){
-//            value =((image[i][j]+image[i+1][j]+image[i][j+1]+image[i+1][j+1]+image[i][j+2]+image[i+2][j]+image[i+2][i+2]+image[i+1][j+2]+image[i+2][j+1])/9);
-//            image[i][j]=value;
-//            image[i+1][j]=value;
-//            image[i][j+1]=value;
-//            image[i+1][j+1]=value;
-//            image[i][j+2]=value;
-//            image[i+2][j]=value;
-//            image[i+2][i+2]=value;
-//            image[i+1][j+2]=value;
-//            image[i+2][j+1]=value;
-//
-//        }}
-//}
+void blur () {
+    int value;
+    for (int i=0 ; i < SIZE ; i+=2){
+        for (int j=0 ; j < SIZE ; j+=2){
+            for (int k = 0 ; k < 3 ; k++) {
+                value = ((image[i][j][k] + image[i + 1][j][k] + image[i][j + 1][k] + image[i + 1][j + 1][k] + image[i][j + 2] [k]+
+                          image[i + 2][j] [k] + image[i + 2][i + 2][k] + image[i + 1][j + 2][k] + image[i + 2][j + 1][k]) / 9);
+                image[i][j][k] = value;
+                image[i + 1][j][k] = value;
+                image[i][j + 1] [k] = value;
+                image[i + 1][j + 1] [k] = value;
+                image[i][j + 2] [k]= value;
+                image[i + 2][j] [k]= value;
+                image[i + 2][i + 2][k] = value;
+                image[i + 1][j + 2][k] = value;
+                image[i + 2][j + 1][k] = value;
+            }
+
+        }}
+}
 ////_______________________________________________________________________
 void invert(){
     for (int i=0; i < 255; i++){

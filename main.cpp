@@ -13,7 +13,7 @@ void flipImage(char option);
 void detectImageEdges();
 //void mirrorImage();
 //void blur();
-//void invert();
+//void invert();//
 //void rotateImage();
 
 int main() {

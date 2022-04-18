@@ -96,13 +96,13 @@ void saveImage () {
 void bAndW() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            for(int k = 0 ; k < RGB ; k++) {
-                image[i] [j] [k] /= 3;
-//                if (image[i][j] [k] > 127)
-//                    image[i][j] [k] = 255;
-//                else
-//                    image[i][j] [k]= 0;
-            }
+
+                if ((image [i] [j] [0] +image [i] [j] [1]+image [i] [j] [2] )/2 > 200){
+                    image [i] [j] [0] = image [i] [j] [1]= image [i] [j] [2] = 255 ;
+                }
+                else
+                    image [i] [j] [0] = image [i] [j] [1]= image [i] [j] [2] = 0 ;
+
         }
     }
 }
@@ -140,7 +140,7 @@ void detectImageEdges(){
     bAndW();
     for (int i = 0 ; i <255; i++){
         for (int j = 0 ; j < 255; j++){
-            for (int k = 0 ; k < RGB ; k++) {
+            for (int k = 0 ; k < 3 ; k++) {
                 if (image[i][j][k] != image[i][j + 1][k] || image[i][j] [k]!= image[i + 1][j][k]) {
                     image[i][j][k] = 0;
                 } else if (image[i][j][k] == image[i][j + 1][k] || image[i][j][k] == image[i + 1][j][k]) {

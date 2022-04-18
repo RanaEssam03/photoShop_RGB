@@ -11,10 +11,10 @@ void saveImage ();
 void bAndW ();
 void flipImage(char option);
 void detectImageEdges();
-//void mirrorImage();
+void mirrorImage();
 //void blur();
-//void invert();//
-//void rotateImage();
+void invert();
+void rotateImage();
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
@@ -36,24 +36,24 @@ int main() {
         else if (filter == '1'){
             bAndW();
         }
-//        else if (filter == '2'){
-//            invert();
-//        }
+        else if (filter == '2'){
+            invert();
+        }
         else if (filter == '4'){
             char option ;
             cout <<"Flip (h)orizontally or (v)ertically ?\n-->";
             cin >> option;
             flipImage(option);
         }
-//        else if (filter == '6'){
-//            rotateImage();
-//        }
+        else if (filter == '6'){
+            rotateImage();
+        }
         else if (filter == '7'){
             detectImageEdges();
         }
-//        else if (filter == 'a'){
-//            mirrorImage();
-//        }
+        else if (filter == 'a'){
+            mirrorImage();
+        }
 //        else if (filter == 'c'){
 //            blur();
 //        }
@@ -152,41 +152,53 @@ void detectImageEdges(){
 }
 
 ////______________________________________________________
-//void mirrorImage(){
-//    char side;
-//    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
-//    cin >> side;
-//    if (side == 'l'){
-//        for (int i = 0; i <255; i++){
-//            for (int j = 127; j < 255 ; j++){
-//                image[i][j] = image[i][255-j-1];
-//            }
-//        }
-//    }
-//    else if (side == 'r'){
-//        for (int i = 0; i <255; i++){
-//            for (int j = 0; j < 127 ; j++){
-//                image[i][j] = image[i][255-j-1];
-//            }
-//        }
-//    }
-//
-//    if (side == 'u'){
-//        for (int i = 127; i <255; i++){
-//            for (int j = 0; j < 255 ; j++){
-//                image[i][j] = image[255-1-i][j];
-//            }
-//        }
-//    }
-//    if (side == 'd'){
-//        for (int i = 0; i <127; i++){
-//            for (int j = 0; j < 255 ; j++){
-//                image[i][j] = image[255-1-i][j];
-//            }
-//        }
-//    }
-//}
-//
+void mirrorImage(){
+    char side;
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?\n -->";
+    cin >> side;
+    if (side == 'l'){
+        for (int i = 0; i <255; i++){
+            for (int j = 127; j < 255 ; j++){
+                for (int k = 0 ; k < RGB ; k++){
+                    image[i][j][k] = image[i][255-j-1][k];
+                }
+
+            }
+        }
+    }
+    else if (side == 'r'){
+        for (int i = 0; i <255; i++){
+            for (int j = 0; j < 127 ; j++){
+                for (int k = 0 ; k < RGB ; k++){
+                    image[i][j][k] = image[i][255-j-1][k];
+                }
+
+            }
+        }
+    }
+
+    if (side == 'u'){
+        for (int i = 127; i <255; i++){
+            for (int j = 0; j < 255 ; j++){
+                for (int k = 0 ; k < RGB ; k++){
+                    image[i][j][k] = image[i][255-j-1][k];
+                }
+
+            }
+        }
+    }
+    if (side == 'd'){
+        for (int i = 0; i <127; i++){
+            for (int j = 0; j < 255 ; j++){
+                for (int k = 0 ; k < RGB ; k++){
+                    image[i][j][k] = image[i][255-j-1][k];
+                }
+
+            }
+        }
+    }
+}
+
 ////________________________________________________________________________________
 //void blur () {
 //    int value;
@@ -206,30 +218,39 @@ void detectImageEdges(){
 //        }}
 //}
 ////_______________________________________________________________________
-//void invert(){
-//    for (int i=0; i < 255; i++){
-//        for (int j = 0 ; j < 255 ; j++){
-//            int x = image[i][j];
-//            image[i][j] = abs(255-x);
-//        }
-//    };
-//}
-//
+void invert(){
+    for (int i=0; i < 255; i++){
+        for (int j = 0 ; j < 255 ; j++){
+            for (int k = 0 ; k < RGB ; k++){
+                int x = image[i][j] [k];
+                image[i][j][k] = abs( RGB - image[i] [j] [k]);
+            }
+
+        }
+    };
+}
+
 ////_______________________________________________________________________________
-//void rotateImage() {
-//    int d;
-//    cout << "Rotate (90), (180) or (270) degrees?";
-//    cin >> d;
-//    int c = d / 90;
-//   for (int k = 0; k < c; k++) {
-//    for (int i = 0; i < SIZE; i++) {
-//        for (int j = i; j < SIZE; j++) {
-//            int temp = image[i][j];
-//            image[i][j] = image[j][i];
-//            image[j][i] = temp;
-//        }
-//    }
-//    flipImage('h');
-//}
-//
-//}
+void rotateImage() {
+    int d;
+    cout << "Rotate (90), (180) or (270) degrees?";
+    cin >> d;
+    int c = d / 90;
+   for (int k = 0; k < c; k++)
+   {
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = i; j < SIZE; j++)
+        {
+            for (int k = 0 ; k < RGB; k++)
+            {
+                int temp = image[i][j][k];
+                image[i][j][k] = image[j][i][k];
+                image[j][i][k] = temp;
+            }
+        }
+    }
+    flipImage('h');
+}
+
+}

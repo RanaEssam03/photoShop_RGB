@@ -282,7 +282,6 @@ void rotateImage() {
         }
         row++;
     }
-    int n =0;
     int row = 0;
     for (int i = 0; i < SIZE / 2; i++) {
         for (int j = 0, col = 0; j < SIZE / 2; j++) {
@@ -296,8 +295,5 @@ void rotateImage() {
             col += 2;
         }
         row += 2;
-        while (n > 3) {
-            n++;
-        }
     }
  }

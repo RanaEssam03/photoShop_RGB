@@ -15,6 +15,8 @@ void mirrorImage();
 void blur();
 void invert();
 void rotateImage();
+void Enlarge ();
+
 
 int main() {
     cout << "Ahlan ya user ya habibi " << char(1) << endl;
@@ -50,6 +52,9 @@ int main() {
         }
         else if (filter == '7'){
             detectImageEdges();
+        }
+        else if (filter == '8'){
+            Enlarge();
         }
         else if (filter == 'a'){
             mirrorImage();
@@ -256,3 +261,39 @@ void rotateImage() {
 }
 
 }
+//--------------------------------------------------------------------------------------------
+ void Enlarge (){
+    unsigned char temp[SIZE / 2][SIZE / 2][3];
+    int  startRow, startCol, endRow, endCol;
+    int quarter = 0;
+    while (quarter > 4 || quarter < 1) {
+        cout << "Which quarter to enlarge 1, 2, 3 or 4?" << endl;
+        cin >> quarter;
+    }
+    startRow = quarter == 1 || quarter == 2 ? 0 : SIZE / 2;
+    endRow = quarter == 1 || quarter == 2 ? SIZE / 2 : SIZE;
+    startCol = quarter == 1 || quarter == 3 ? 0 : SIZE / 2;
+    endCol = quarter == 1 || quarter == 3 ? SIZE / 2 : SIZE;
+    for (int i = startRow, row = 0; i < endRow; i++) {
+        for (int j = startCol, col = 0; j < endCol; j++) {
+            for (int k=0 , k<3 ; k++)
+            temp[row][col][k] = image[i][j][k];
+            col++;
+        }
+        row++;
+    }
+    int n =0
+    for (int i = 0, row = 0; i < SIZE / 2; i++) {
+        for (int j = 0, col = 0; j < SIZE / 2; j++) {
+            image[row][col][n] = temp[i][j]{n};
+            image[row + 1][col][n] = temp[i][j][n];
+            image[row][col + 1][n] = temp[i][j][n];
+            image[row + 1][col + 1][n] = temp[i][j][n];
+            col += 2;
+        }
+        row += 2;
+        while (n > 3) {
+            n++;
+        }
+    }
+ }

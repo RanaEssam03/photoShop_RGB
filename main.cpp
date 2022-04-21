@@ -276,19 +276,23 @@ void rotateImage() {
     endCol = quarter == 1 || quarter == 3 ? SIZE / 2 : SIZE;
     for (int i = startRow, row = 0; i < endRow; i++) {
         for (int j = startCol, col = 0; j < endCol; j++) {
-            for (int k=0 , k<3 ; k++)
+            for (int k=0 ; k < 3 ; k++)
             temp[row][col][k] = image[i][j][k];
             col++;
         }
         row++;
     }
-    int n =0
-    for (int i = 0, row = 0; i < SIZE / 2; i++) {
+    int n =0;
+    int row = 0;
+    for (int i = 0; i < SIZE / 2; i++) {
         for (int j = 0, col = 0; j < SIZE / 2; j++) {
-            image[row][col][n] = temp[i][j]{n};
-            image[row + 1][col][n] = temp[i][j][n];
-            image[row][col + 1][n] = temp[i][j][n];
-            image[row + 1][col + 1][n] = temp[i][j][n];
+            for (int k = 0 ; k < RGB; k++) {
+                image[row][col][k] = temp[i][j][k];
+                image[row + 1][col][k] = temp[i][j][k];
+                image[row][col + 1][k] = temp[i][j][k];
+                image[row + 1][col + 1][k] = temp[i][j][k];
+
+            }
             col += 2;
         }
         row += 2;

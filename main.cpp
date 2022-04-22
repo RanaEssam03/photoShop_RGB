@@ -1,11 +1,11 @@
 // FCI – Programming 1 – 2022 - Assignment 3
-// Program Name: photoShop.cpp
+// Program Name: photoShop_RGB "bonus".cpp
 // Last Modification Date: 23/4/2022
 // Author1 and ID and Group: Rana Essam Ibrahim 20210133 S1
 // Author2 and ID and Group: Nourhan Abdullah  20210437 S1
 // Author3 and ID and Group: Hazem Medhat  20210116
 // Teaching Assistant: Eng: Nesma & Eng: Youssra
-// Purpose:Full photo shop program
+// Purpose:Full RGB photo shop program | bonus
 
 #include <iostream>
 #include <fstream>
